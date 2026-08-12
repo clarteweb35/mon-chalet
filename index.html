@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>mon-chalet.fr — Conseil en location touristique à Domagné</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root{
+    --pine:#1E2A21;
+    --pine-2:#28362A;
+    --stone:#FFFFFF;
+    --stone-2:#F4F4F2;
+    --oak:#8B6F4E;
+    --rust:#B5502A;
+    --rust-dark:#8F3D1F;
+    --ink:#2B2823;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--stone);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+  }
+  .font-display{font-family:'Fraunces', serif;}
+  .font-mono{font-family:'JetBrains Mono', monospace;}
+
+  .dashed-plot{
+    stroke:var(--oak);
+    stroke-width:1.5;
+    stroke-dasharray:6 6;
+    fill:none;
+    opacity:0.55;
+  }
+  .grain{
+    background-image:radial-gradient(var(--ink) 0.5px, transparent 0.5px);
+    background-size:14px 14px;
+    opacity:0.04;
+  }
+  .section-pad{padding-top:5.5rem;padding-bottom:5.5rem;}
+  @media(min-width:768px){.section-pad{padding-top:8rem;padding-bottom:8rem;}}
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    font-size:0.72rem;
+  }
+
+  .btn-primary{
+    background:var(--rust);
+    color:var(--stone);
+    box-shadow:0 10px 24px -12px rgba(181,80,42,0.55);
+    transition:background .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary:hover{background:var(--rust-dark); transform:translateY(-2px) scale(1.015); box-shadow:0 14px 28px -10px rgba(181,80,42,0.6);}
+  .btn-primary:active{transform:translateY(0) scale(0.99);}
+
+  .btn-ghost{
+    border:1.5px solid var(--pine);
+    color:var(--pine);
+    transition:all .25s ease;
+  }
+  .btn-ghost:hover{background:var(--pine); color:var(--stone); transform:translateY(-2px);}
+
+  .nav-link{position:relative;}
+  .nav-link::after{
+    content:"";
+    position:absolute; left:0; bottom:-4px;
+    width:0; height:1.5px;
+    background:var(--rust);
+    transition:width .25s ease;
+  }
+  .nav-link:hover::after{width:100%;}
+
+  .warm-shadow{box-shadow:0 22px 40px -26px rgba(30,42,33,0.45);}
+
+  .compass{
+    transition:transform 1.2s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  .card-service{
+    border:1px solid rgba(43,40,35,0.12);
+    border-radius:1.75rem;
+    transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s ease, border-color .35s ease;
+  }
+  .card-service:hover{
+    transform:translateY(-6px) rotate(-0.4deg);
+    box-shadow:0 22px 34px -18px rgba(30,42,33,0.4);
+    border-color:var(--oak);
+  }
+
+  .story-card{
+    border-radius:2rem;
+    background:linear-gradient(155deg, var(--stone-2), var(--stone));
+  }
+
+  .polaroid{
+    background:var(--stone);
+    padding:0.6rem 0.6rem 1.6rem 0.6rem;
+    border-radius:0.5rem;
+    box-shadow:0 16px 30px -16px rgba(30,42,33,0.5);
+    transition:transform .35s ease;
+  }
+  .polaroid:hover{transform:rotate(0deg) scale(1.02);}
+
+  .plot-line{stroke:var(--stone-2); stroke-width:1; opacity:0.5;}
+
+  details summary::-webkit-details-marker{display:none;}
+  details[open] .chev{transform:rotate(45deg);}
+  .chev{transition:transform .25s ease;}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- ===== NAV ===== -->
+<header class="fixed top-0 inset-x-0 z-50 backdrop-blur bg-[var(--stone)]/85 border-b border-[var(--ink)]/10">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+    <a href="#" class="font-display text-lg tracking-tight">mon-chalet<span class="text-[var(--rust)]">.fr</span></a>
+    <nav class="hidden md:flex items-center gap-8 text-sm">
+      <a href="#methode" class="nav-link hover:text-[var(--rust)] transition-colors">La méthode</a>
+      <a href="#histoire" class="nav-link hover:text-[var(--rust)] transition-colors">Mon histoire</a>
+      <a href="#preuve" class="nav-link hover:text-[var(--rust)] transition-colors">Le chalet témoin</a>
+      <a href="#faq" class="nav-link hover:text-[var(--rust)] transition-colors">Questions</a>
+    </nav>
+    <a href="#contact" class="btn-primary text-sm font-medium px-4 py-2.5 rounded-full">Réserver un échange</a>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="relative overflow-hidden pt-32 pb-20 md:pt-44 md:pb-28">
+  <div class="absolute inset-0 grain pointer-events-none"></div>
+  <!-- terrain plan motif -->
+  <svg class="absolute -right-24 -top-10 w-[560px] md:w-[720px] opacity-70 pointer-events-none" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="40" y="40" width="520" height="520" rx="4" class="dashed-plot"/>
+    <circle cx="300" cy="300" r="70" class="dashed-plot compass" style="transform-origin:300px 300px;"/>
+    <line x1="300" y1="180" x2="300" y2="420" class="dashed-plot"/>
+    <line x1="180" y1="300" x2="420" y2="300" class="dashed-plot"/>
+    <path d="M300 175 L292 195 L308 195 Z" fill="var(--oak)" opacity="0.55"/>
+    <rect x="360" y="330" width="120" height="90" rx="2" stroke="var(--rust)" stroke-width="2" fill="var(--rust)" fill-opacity="0.08"/>
+    <text x="365" y="345" class="font-mono" font-size="11" fill="var(--rust)" opacity="0.8">CHALET</text>
+  </svg>
+
+  <div class="relative max-w-6xl mx-auto px-6 md:px-10">
+    <p class="eyebrow text-[var(--oak)] mb-6">Conseil en implantation &amp; location touristique — Domagné, Ille-et-Vilaine</p>
+    <h1 class="font-display text-[2.6rem] leading-[1.08] md:text-6xl md:leading-[1.05] max-w-3xl font-medium text-[var(--pine)]">
+      Vous avez un terrain.<br>
+      On en fait un <span class="italic text-[var(--rust)]">revenu</span>, pas un pari.
+    </h1>
+    <p class="mt-6 max-w-xl text-lg text-[var(--ink)]/80 leading-relaxed">
+      Vous rêvez d'un chalet à louer mais vous ne savez pas par où commencer ? Je vous accompagne du choix du modèle jusqu'aux premières réservations — sans jamais poser un clou moi-même.
+    </p>
+    <div class="mt-9 flex flex-wrap gap-4">
+      <a href="#contact" class="btn-primary font-medium px-6 py-3.5 rounded-full">Faire le point sur mon terrain</a>
+      <a href="#preuve" class="btn-ghost font-medium px-6 py-3.5 rounded-full">Voir le chalet témoin</a>
+    </div>
+    <div class="mt-12 flex flex-wrap items-center gap-x-10 gap-y-3 text-sm text-[var(--ink)]/65 font-mono">
+      <span>📍 Basé à Domagné (35)</span>
+      <span>🏡 Chalet témoin construit et exploité par mes soins</span>
+      <span>🤝 Accompagnement, pas de sous-traitance</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROBLEME / EMPATHIE ===== -->
+<section class="section-pad bg-[var(--pine)] text-[var(--stone)] relative overflow-hidden">
+  <svg class="absolute left-0 bottom-0 w-full h-24 opacity-20" viewBox="0 0 1000 80" preserveAspectRatio="none"><path d="M0 80 L0 40 L100 55 L220 30 L340 60 L460 20 L580 50 L700 25 L820 55 L920 35 L1000 50 L1000 80 Z" fill="var(--oak)"/></svg>
+  <div class="relative max-w-5xl mx-auto px-6 md:px-10">
+    <p class="eyebrow text-[var(--oak)] mb-4">Ce qui bloque, en général</p>
+    <h2 class="font-display text-3xl md:text-[2.6rem] leading-tight max-w-2xl font-medium">
+      Le terrain, vous l'avez. Les bonnes questions, un peu moins.
+    </h2>
+    <div class="mt-12 grid md:grid-cols-3 gap-8 md:gap-10">
+      <div class="reveal">
+        <p class="font-mono text-[var(--rust)] text-sm mb-3">01</p>
+        <p class="text-[var(--stone)]/85 leading-relaxed">Quel modèle choisir sur les dizaines de catalogues en ligne, et où l'implanter pour respecter les règles et l'ensoleillement ?</p>
+      </div>
+      <div class="reveal">
+        <p class="font-mono text-[var(--rust)] text-sm mb-3">02</p>
+        <p class="text-[var(--stone)]/85 leading-relaxed">Comment aménager l'intérieur pour qu'il plaise à des voyageurs, pas seulement à soi — et qui va gérer le ménage entre deux séjours ?</p>
+      </div>
+      <div class="reveal">
+        <p class="font-mono text-[var(--rust)] text-sm mb-3">03</p>
+        <p class="text-[var(--stone)]/85 leading-relaxed">Quel prix afficher, sur quelles plateformes, et comment sortir du lot face à des annonces déjà bien installées ?</p>
+      </div>
+    </div>
+    <p class="mt-12 text-[var(--stone)]/70 max-w-2xl italic font-display text-xl">
+      Ce sont des questions de méthode, pas de chance. Et elles se traitent avant de commander quoi que ce soit.
+    </p>
+  </div>
+</section>
+
+<!-- ===== HISTOIRE / POURQUOI JE FAIS CA ===== -->
+<section id="histoire" class="section-pad">
+  <div class="max-w-5xl mx-auto px-6 md:px-10">
+    <div class="story-card warm-shadow p-8 md:p-14 grid md:grid-cols-[1fr_1.3fr] gap-10 items-center">
+      <div class="relative flex justify-center md:justify-start">
+        <div class="polaroid w-56 md:w-64 -rotate-3">
+          <div class="aspect-square rounded-sm bg-[var(--pine-2)] flex items-center justify-center overflow-hidden">
+            <svg viewBox="0 0 200 200" class="w-full h-full opacity-70">
+              <rect width="200" height="200" fill="var(--pine-2)"/>
+              <path d="M40 140 L100 70 L160 140 Z" fill="var(--oak)" opacity="0.6"/>
+              <rect x="70" y="120" width="60" height="40" fill="var(--rust)" opacity="0.5"/>
+              <line x1="100" y1="70" x2="100" y2="50" stroke="var(--stone)" stroke-width="2" opacity="0.4"/>
+            </svg>
+          </div>
+          <p class="font-mono text-[0.65rem] text-center mt-2 text-[var(--ink)]/50">chalet témoin — année 1</p>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow text-[var(--oak)] mb-4">Pourquoi je fais ça</p>
+        <h2 class="font-display text-2xl md:text-3xl font-medium text-[var(--pine)] leading-snug">
+          J'ai fait toutes les erreurs qu'on peut faire. Une par une.
+        </h2>
+        <p class="mt-5 text-[var(--ink)]/80 leading-relaxed">
+          Le chalet témoin, à Domagné, je l'ai monté sans mode d'emploi. Mauvaise orientation au départ, qui m'a coûté un été de soleil en plein après-midi dans le salon. Un planning de ménage bricolé sur un carnet, qui m'a fait rater deux arrivées. Une annonce mal écrite pendant des mois, qui ne convertissait pas malgré les visites.
+        </p>
+        <p class="mt-4 text-[var(--ink)]/80 leading-relaxed">
+          Rien de dramatique, mais du temps perdu et de l'argent qui aurait pu rester dans ma poche. C'est exactement ce que j'évite aujourd'hui à mes clients : je connais déjà l'endroit où on trébuche, alors autant vous éviter d'y passer.
+        </p>
+        <p class="mt-5 font-display italic text-[var(--rust)] text-lg">— et depuis, le chalet tourne, sans que j'y pense tous les jours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PREUVE / CHALET TEMOIN ===== -->
+<section id="preuve" class="section-pad">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+    <div class="order-2 md:order-1">
+      <p class="eyebrow text-[var(--oak)] mb-4">Pourquoi m'écouter</p>
+      <h2 class="font-display text-3xl md:text-4xl font-medium text-[var(--pine)] leading-tight">
+        Je ne vends pas une théorie. J'ai testé chaque étape chez moi.
+      </h2>
+      <p class="mt-6 text-[var(--ink)]/80 leading-relaxed">
+        Le chalet témoin dans mon jardin, à Domagné, n'est pas une brochure : c'est l'endroit où j'ai choisi un emplacement, arbitré chaque mètre carré intérieur, et mis en place les process que je recommande aujourd'hui à mes clients — ménage, check-in, tarification.
+      </p>
+      <p class="mt-4 text-[var(--ink)]/80 leading-relaxed">
+        Vous ne partez pas d'une feuille blanche : vous partez d'un modèle qui fonctionne déjà, que vous pouvez visiter.
+      </p>
+      <a href="#contact" class="mt-8 inline-block btn-ghost font-medium px-6 py-3 rounded-full text-sm">Demander une visite du chalet témoin</a>
+    </div>
+    <div class="order-1 md:order-2 relative">
+      <div class="aspect-[4/5] rounded-[2rem] warm-shadow bg-[var(--pine-2)] relative overflow-hidden flex items-end p-8 transition-transform duration-500 hover:-rotate-1">
+        <svg class="absolute inset-0 w-full h-full opacity-25" viewBox="0 0 400 500" fill="none">
+          <rect x="20" y="20" width="360" height="460" class="dashed-plot"/>
+          <rect x="120" y="260" width="160" height="140" fill="var(--oak)" opacity="0.3"/>
+          <path d="M120 260 L200 200 L280 260 Z" fill="var(--oak)" opacity="0.4"/>
+        </svg>
+        <p class="relative font-display text-2xl text-[var(--stone)] italic leading-snug">
+          « Testé sous mon propre toit, avant d'être conseillé sous le vôtre. »
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="methode" class="section-pad bg-[var(--stone-2)]">
+  <div class="max-w-6xl mx-auto px-6 md:px-10">
+    <p class="eyebrow text-[var(--oak)] mb-4">Le parcours, dans l'ordre où il se joue vraiment</p>
+    <h2 class="font-display text-3xl md:text-4xl font-medium text-[var(--pine)] max-w-2xl">
+      On avance ensemble, en trois temps.
+    </h2>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-6">
+      <div class="card-service bg-white p-8 flex flex-col">
+        <p class="font-mono text-[var(--rust)] text-sm">01 — Achat &amp; implantation</p>
+        <h3 class="font-display text-xl font-medium mt-3 text-[var(--pine)]">On choisit le modèle ensemble</h3>
+        <p class="mt-4 text-[var(--ink)]/75 leading-relaxed flex-1">
+          Je vous aide à trier dans l'offre disponible en ligne, selon votre budget et vos futurs voyageurs. Et on trouve le bon coin du terrain : accès, orientation, vis-à-vis, intimité.
+        </p>
+      </div>
+      <div class="card-service bg-white p-8 flex flex-col">
+        <p class="font-mono text-[var(--rust)] text-sm">02 — Agencement &amp; process</p>
+        <h3 class="font-display text-xl font-medium mt-3 text-[var(--pine)]">On pense l'intérieur pour qu'il tourne</h3>
+        <p class="mt-4 text-[var(--ink)]/75 leading-relaxed flex-1">
+          Circulation, rangements, équipements que les voyageurs attendent vraiment. Et surtout : qui fait le ménage, qui gère les arrivées, qui s'occupe de l'entretien. Sans ça, tout le reste s'écroule.
+        </p>
+      </div>
+      <div class="card-service bg-white p-8 flex flex-col">
+        <p class="font-mono text-[var(--rust)] text-sm">03 — Commerce &amp; marketing</p>
+        <h3 class="font-display text-xl font-medium mt-3 text-[var(--pine)]">On remplit le planning</h3>
+        <p class="mt-4 text-[var(--ink)]/75 leading-relaxed flex-1">
+          Une annonce qui donne envie, un prix qui tient la route, les bonnes plateformes. L'objectif n'est pas d'exister en ligne, c'est d'avoir des réservations dans l'agenda.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 flex items-start gap-4 bg-[var(--pine)] text-[var(--stone)] rounded-[1.75rem] p-6 md:p-8">
+      <span class="text-[var(--rust)] text-xl leading-none mt-0.5">＋</span>
+      <p class="text-sm md:text-base text-[var(--stone)]/85 leading-relaxed">
+        <strong class="text-[var(--stone)]">Ce que je ne fais pas de mes mains :</strong> monter le chalet. Une fois livré, le chantier reste le vôtre, avec les artisans de votre choix — moi, je reste sur le conseil, la stratégie et l'accompagnement, du premier coup de fil jusqu'aux premiers avis clients.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== POUR QUI ===== -->
+<section id="pour-qui" class="section-pad">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-10">
+    <div>
+      <p class="eyebrow text-[var(--oak)] mb-4">Cet accompagnement est fait pour vous si…</p>
+      <ul class="space-y-4">
+        <li class="flex gap-3"><span class="text-[var(--rust)] font-display text-lg">✓</span><span>Vous possédez un terrain (ou êtes en cours d'acquisition) et envisagez d'y installer un chalet, un habitat léger ou une petite structure en location.</span></li>
+        <li class="flex gap-3"><span class="text-[var(--rust)] font-display text-lg">✓</span><span>Vous hésitez sur le modèle, l'emplacement ou la rentabilité réelle du projet, et voulez des repères concrets avant de commander.</span></li>
+        <li class="flex gap-3"><span class="text-[var(--rust)] font-display text-lg">✓</span><span>Vous voulez un revenu locatif géré simplement, sans devenir spécialiste du marketing touristique du jour au lendemain.</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow text-[var(--oak)] mb-4">Ce n'est probablement pas pour vous si…</p>
+      <ul class="space-y-4 text-[var(--ink)]/70">
+        <li class="flex gap-3"><span class="text-[var(--ink)]/40 font-display text-lg">–</span><span>Vous cherchez une entreprise pour construire et poser physiquement le chalet.</span></li>
+        <li class="flex gap-3"><span class="text-[var(--ink)]/40 font-display text-lg">–</span><span>Vous gérez déjà plusieurs hébergements avec un système rodé et cherchez uniquement de l'outillage technique.</span></li>
+        <li class="flex gap-3"><span class="text-[var(--ink)]/40 font-display text-lg">–</span><span>Vous n'avez pas encore de terrain ni de projet défini, même à l'état d'idée.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="section-pad bg-[var(--stone-2)]">
+  <div class="max-w-3xl mx-auto px-6 md:px-10">
+    <p class="eyebrow text-[var(--oak)] mb-4">Questions fréquentes</p>
+    <h2 class="font-display text-3xl md:text-4xl font-medium text-[var(--pine)] mb-10">Avant de nous écrire</h2>
+
+    <div class="space-y-3">
+      <details class="group bg-white rounded-[1.25rem] px-6 py-5 border border-[var(--ink)]/10 transition-shadow hover:shadow-md">
+        <summary class="flex justify-between items-center cursor-pointer font-medium text-[var(--pine)]">
+          Faut-il déjà avoir acheté le chalet pour vous contacter ?
+          <span class="chev text-[var(--rust)] text-xl">+</span>
+        </summary>
+        <p class="mt-3 text-[var(--ink)]/75 leading-relaxed">Non, c'est même le contraire de l'idéal. L'accompagnement a le plus de valeur en amont, sur le choix du modèle et l'implantation, avant toute commande.</p>
+      </details>
+      <details class="group bg-white rounded-[1.25rem] px-6 py-5 border border-[var(--ink)]/10 transition-shadow hover:shadow-md">
+        <summary class="flex justify-between items-center cursor-pointer font-medium text-[var(--pine)]">
+          Intervenez-vous en dehors de la Bretagne ?
+          <span class="chev text-[var(--rust)] text-xl">+</span>
+        </summary>
+        <p class="mt-3 text-[var(--ink)]/75 leading-relaxed">Mon ancrage est local, à Domagné, mais l'accompagnement stratégique — choix, agencement, commercialisation — peut se faire à distance selon les projets. Parlons-en directement.</p>
+      </details>
+      <details class="group bg-white rounded-[1.25rem] px-6 py-5 border border-[var(--ink)]/10 transition-shadow hover:shadow-md">
+        <summary class="flex justify-between items-center cursor-pointer font-medium text-[var(--pine)]">
+          Vous occupez-vous de la construction du chalet ?
+          <span class="chev text-[var(--rust)] text-xl">+</span>
+        </summary>
+        <p class="mt-3 text-[var(--ink)]/75 leading-relaxed">Non. Je vous aide à choisir et à implanter le bon modèle, mais la construction ou la pose une fois livré reste à la charge du client, avec les professionnels de votre choix.</p>
+      </details>
+      <details class="group bg-white rounded-[1.25rem] px-6 py-5 border border-[var(--ink)]/10 transition-shadow hover:shadow-md">
+        <summary class="flex justify-between items-center cursor-pointer font-medium text-[var(--pine)]">
+          Combien de temps dure l'accompagnement ?
+          <span class="chev text-[var(--rust)] text-xl">+</span>
+        </summary>
+        <p class="mt-3 text-[var(--ink)]/75 leading-relaxed">Cela dépend de l'avancement de votre projet. On en discute lors du premier échange pour cadrer les étapes utiles à votre situation, sans forfait imposé.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL / CONTACT ===== -->
+<section id="contact" class="section-pad bg-[var(--pine)] text-[var(--stone)] relative overflow-hidden">
+  <svg class="absolute -left-16 -bottom-16 w-96 opacity-15 pointer-events-none" viewBox="0 0 400 400" fill="none">
+    <circle cx="200" cy="200" r="150" class="dashed-plot"/>
+    <line x1="200" y1="60" x2="200" y2="340" class="dashed-plot"/>
+    <line x1="60" y1="200" x2="340" y2="200" class="dashed-plot"/>
+  </svg>
+  <div class="relative max-w-4xl mx-auto px-6 md:px-10 text-center">
+    <p class="eyebrow text-[var(--oak)] mb-5">Prochaine étape</p>
+    <h2 class="font-display text-3xl md:text-5xl font-medium leading-tight max-w-2xl mx-auto">
+      On en parle autour d'un café (virtuel) ?
+    </h2>
+    <p class="mt-6 text-[var(--stone)]/75 max-w-xl mx-auto leading-relaxed">
+      Un premier échange de 30 minutes, gratuit et sans engagement, pour faire le point sur votre projet et voir s'il est prêt à démarrer.
+    </p>
+
+    <form class="mt-10 max-w-lg mx-auto grid gap-4 text-left" onsubmit="event.preventDefault();">
+      <div class="grid md:grid-cols-2 gap-4">
+        <input type="text" placeholder="Votre nom" class="rounded-2xl px-4 py-3 bg-[var(--stone)]/95 text-[var(--ink)] placeholder-[var(--ink)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--rust)] transition-shadow">
+        <input type="tel" placeholder="Téléphone" class="rounded-2xl px-4 py-3 bg-[var(--stone)]/95 text-[var(--ink)] placeholder-[var(--ink)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--rust)] transition-shadow">
+      </div>
+      <input type="email" placeholder="Adresse e-mail" class="rounded-2xl px-4 py-3 bg-[var(--stone)]/95 text-[var(--ink)] placeholder-[var(--ink)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--rust)] transition-shadow">
+      <textarea rows="3" placeholder="Où en est votre projet ? (terrain déjà disponible, commune, échéance envisagée...)" class="rounded-2xl px-4 py-3 bg-[var(--stone)]/95 text-[var(--ink)] placeholder-[var(--ink)]/50 focus:outline-none focus:ring-2 focus:ring-[var(--rust)] resize-none transition-shadow"></textarea>
+      <button type="submit" class="btn-primary font-medium px-6 py-3.5 rounded-full mt-2">Demander mon échange gratuit</button>
+      <p class="text-xs text-[var(--stone)]/50 text-center mt-1">Réponse sous 48h ouvrées.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="py-10 bg-[var(--pine)] text-[var(--stone)]/60 border-t border-[var(--stone)]/10">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+    <span class="font-display text-[var(--stone)]">mon-chalet.fr</span>
+    <span>JGS Company — Conseil en agencement &amp; accompagnement à la location touristique — Domagné (35)</span>
+  </div>
+  <div class="max-w-6xl mx-auto px-6 md:px-10 mt-4 text-xs text-[var(--stone)]/40 text-center md:text-left">
+    mon-chalet.fr est édité par JGS Company (SASU en cours d'immatriculation — SIRET en cours d'attribution), Domagné (35). Directeur de publication : [Votre nom]. Hébergeur : [à préciser].
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  const compass = document.querySelector('.compass');
+  if(compass){ window.addEventListener('load', ()=>{ compass.style.transform = 'rotate(45deg)'; }); }
+</script>
+
+</body>
+</html>
